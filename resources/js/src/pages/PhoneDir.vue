@@ -1,27 +1,27 @@
 <script lang="ts">
-import {defineComponent, ref} from 'vue';
-import axios from "axios";
+    import {defineComponent, ref} from 'vue';
+    import axios from "axios";
 
-export default defineComponent({
-    setup() {
-        const keyword = ref(null);
-        const people = ref([]);
+    export default defineComponent({
+        setup() {
+            const keyword = ref(null);
+            const people = ref([]);
 
-        function getResults() {
-            axios.get('/api/live-search', { params: { keyword: keyword.value } })
-                .then((res) => {
-                    people.value = res.data;
-                })
-                .catch((error) => {});
-        }
+            function getResults() {
+                axios.get('/api/live-search', { params: { keyword: keyword.value } })
+                    .then((res) => {
+                        people.value = res.data;
+                    })
+                    .catch((error) => {});
+            }
 
-        return {
-            keyword,
-            people,
-            getResults
-        };
-    },
-});
+            return {
+                keyword,
+                people,
+                getResults
+            };
+        },
+    });
 </script>
 
 <template>
@@ -49,5 +49,4 @@ export default defineComponent({
 </template>
 
 <style scoped lang="less">
-
 </style>

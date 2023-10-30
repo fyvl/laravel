@@ -1,7 +1,9 @@
 <script>
-export default {
-    name: "PrimaryFooter"
-}
+    export default {
+        setup() {
+            return {};
+        },
+    };
 </script>
 
 <template>

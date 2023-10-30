@@ -1,10 +1,12 @@
 <script lang="ts">
-    import { defineComponent } from 'vue';
+    import {defineComponent, ref} from 'vue';
     import axios from "axios";
 
     export default defineComponent({
         components: {},
         setup() {
+            const news = ref([]);
+
             function deleteResource(id) {
                 axios.delete(`/api/news/${id}`)
                     .then((response) => {
@@ -24,14 +26,15 @@
                 this.$router.push(`/news/${id}`);
             }
 
+            function navigateToCreation() {
+                this.$router.push('/news/create');
+            }
+
             return {
+                news,
                 deleteResource,
-                navigateToSpec
-            };
-        },
-        data() {
-            return {
-                news: []
+                navigateToSpec,
+                navigateToCreation
             };
         },
         created() {
@@ -45,13 +48,7 @@
 </script>
 
 <template>
-    <button class="btn btn-primary mb-3">
-        <router-link
-            class="nav-link"
-            to="/news/create"
-        >Добавить
-        </router-link>
-    </button>
+    <button @click="navigateToCreation" class="btn btn-primary mb-3">Добавить</button>
     <div class="row">
         <div class="col-sm-6" v-for="item in news">
             <div class="card mb-3" v-if="!item.deleted">

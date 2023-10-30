@@ -1,25 +1,25 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
-import axios from "axios";
+    import { defineComponent } from 'vue';
+    import axios from "axios";
 
-export default defineComponent({
-    components: {},
-    setup() {
-        return {};
-    },
-    data() {
-        return {
-            departments: []
-        };
-    },
-    created() {
-        axios.get('/api/departments')
-            .then(response => {
-                this.departments = response.data;
-                console.log(response.data)
-            });
-    },
-});
+    export default defineComponent({
+        components: {},
+        setup() {
+            return {};
+        },
+        data() {
+            return {
+                departments: []
+            };
+        },
+        created() {
+            axios.get('/api/departments')
+                .then(response => {
+                    this.departments = response.data;
+                    console.log(response.data)
+                });
+        },
+    });
 </script>
 
 <template>

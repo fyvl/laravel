@@ -1,46 +1,34 @@
 <script>
-import { defineComponent, ref } from "vue";
-import axios from "axios";
-import router from "@/router/router.js";
+    import { defineComponent, ref } from "vue";
+    import axios from "axios";
 
-export default defineComponent({
-    components: {},
-    setup() {
-        const title = ref('');
-        const description = ref('');
-        const link = ref('');
+    export default defineComponent({
+        components: {},
+        setup() {
+            const title = ref('');
+            const description = ref('');
+            const link = ref('');
 
-        function formSubmit(e) {
-            e.preventDefault();
+            function formSubmit(e) {
+                e.preventDefault();
 
-            axios.post('/api/formSubmit', {
-                title: title.value,
-                description: description.value,
-                link: link.value
-            })
+                axios.post('/api/formSubmit', {
+                    title: title.value,
+                    description: description.value,
+                    link: link.value
+                })
 
-            // title.value = '';
-            // description.value = '';
-            // link.value = '';
+                this.$router.push('/news');
+            }
 
-            this.$router.push('/news');
-        }
-
-        return {
-            title,
-            description,
-            link,
-            formSubmit
-        };
-    },
-    data() {
-        return {
-            title: '',
-            description: '',
-            link: ''
-        };
-    }
-})
+            return {
+                title,
+                description,
+                link,
+                formSubmit
+            };
+        },
+    });
 </script>
 
 <template>
@@ -62,5 +50,4 @@ export default defineComponent({
 </template>
 
 <style scoped lang="less">
-
 </style>

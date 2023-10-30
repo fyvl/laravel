@@ -1,14 +1,8 @@
 <script>
     import {defineComponent, ref} from "vue";
     import axios from "axios";
-    import news from "./News.vue";
 
     export default defineComponent({
-        computed: {
-            news() {
-                return news
-            }
-        },
         components: {},
         setup() {
             const news = ref([]);
@@ -25,7 +19,7 @@
                     this.news = response.data;
                     console.log(response.data)
                 });
-        }
+        },
     })
 </script>
 

@@ -1,17 +1,16 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
+    import {defineComponent, ref} from 'vue';
 
-export default defineComponent({
-    components: {},
-    setup() {
-        return {};
-    },
-    data() {
-        return {
-            name: ['Apples','Pizza','Rice','Fish','Cake']
-        };
-    }
-});
+        export default defineComponent({
+            components: {},
+            setup() {
+                const name = ref(['Apples','Pizza','Rice','Fish','Cake']);
+
+                return {
+                    name
+                };
+            },
+        });
 </script>
 
 <template>
