@@ -17,9 +17,26 @@ class PersonController extends Controller
 
     public function getPeople(Request $request)
     {
-        $keyword = $request->input('keyword');
+        $lastName = $request->input('lastName');
+        $firstName = $request->input('firstName');
+        $patronymic = $request->input('patronymic');
 
-        $data = Person::where('name', 'LIKE', '%' . $keyword . '%')->get();
+        $query = Person::query();
+
+        if ($lastName) {
+            $query->where('last_name', 'LIKE', '%' . $lastName . '%');
+        }
+
+        if ($firstName) {
+            $query->where('name', 'LIKE', '%' . $firstName . '%');
+        }
+
+        if ($patronymic) {
+            $query->where('patronymic', 'LIKE', '%' . $patronymic . '%');
+        }
+
+        $data = $query->get();
+
         return response()->json($data);
     }
 

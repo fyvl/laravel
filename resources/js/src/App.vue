@@ -17,9 +17,7 @@
 			PrimaryHeader,
 		},
 		setup() {
-			return {
-				username: 'Михаил',
-			};
+			return {};
 		},
 	});
 </script>
