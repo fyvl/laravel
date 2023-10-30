@@ -16,6 +16,12 @@ class NewsController extends Controller
         return response()->json($news);
     }
 
+    public function goToID($id)
+    {
+        $news = News::find($id);
+        return response()->json($news);
+    }
+
     public function formSubmit(Request $request)
     {
         // Validate the request data if necessary

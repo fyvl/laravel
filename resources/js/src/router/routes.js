@@ -4,6 +4,7 @@ import Departments from "@/pages/Departments.vue";
 import Resources from "@/pages/Resources.vue";
 import CreateNews from "@/pages/CreateNews.vue";
 import PhoneDir from "@/pages/PhoneDir.vue"
+import SpecificNews from "@/pages/SpecificNews.vue";
 
 const routes = [
 	{
@@ -30,6 +31,10 @@ const routes = [
         path: '/phone-dir',
         component: PhoneDir,
     },
+    {
+        path: '/news/:id',
+        component: SpecificNews,
+    }
 ];
 
 export default routes;

@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('news', [NewsController::class, 'index']);
 Route::post('formSubmit',[NewsController::class, 'formSubmit']);
 Route::delete('news/{id}', [NewsController::class, 'destroy']);
+Route::get('news/{id}', [NewsController::class, 'goToID']);
 
 Route::get('departments', [DepartmentController::class, 'index']);
 

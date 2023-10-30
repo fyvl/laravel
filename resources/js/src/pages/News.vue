@@ -20,8 +20,13 @@
                     });
             }
 
+            function navigateToSpec(id) {
+                this.$router.push(`/news/${id}`);
+            }
+
             return {
-                deleteResource
+                deleteResource,
+                navigateToSpec
             };
         },
         data() {
@@ -53,8 +58,8 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ item.title }}</h5>
                     <p class="card-text">{{ item.description }}</p>
-                    <a href="" class="btn btn-primary">Перейти</a>
-                    <button @click="deleteResource(item.id)" class="btn btn-danger m-1">Delete</button>
+                    <button @click="navigateToSpec(item.id)" class="btn btn-primary">Перейти</button>
+                    <button @click="deleteResource(item.id)" class="btn btn-danger m-1">Удалить</button>
                 </div>
             </div>
         </div>
