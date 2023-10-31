@@ -26,11 +26,27 @@
 <template>
     <div class="card">
         <div class="card-body">
-            <h3 class="card-title">{{ news.title }}</h3>
-            <h5 class="card-text">{{ news.description }}</h5>
+            <div class="img-container">
+                <img class="image" :src="'http://localhost:5173/resources/js/src/assets/' + news.img_link">
+            </div>
+            <div class="container">
+                <h5 class="card-title">{{ news.title }}</h5>
+                <p class="card-text">{{ news.description }}</p>
+            </div>
         </div>
     </div>
 </template>
 
 <style scoped lang="less">
+    .img-container{
+        float: left;
+        margin-right: 10px;
+        padding: 10px;
+    }
+
+    .image {
+        width: auto;
+        max-width: 125px;
+        height: auto;
+    }
 </style>

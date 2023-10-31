@@ -27,13 +27,15 @@ class NewsController extends Controller
         // Validate the request data if necessary
         $validatedData = $request->validate([
             'title' => 'required|string',
-            'description' => 'string'
+            'description' => 'string',
+            'img_link' => 'string'
         ]);
 
         // Create a new model instance and store the data
         $model = new News(); // Replace 'YourModel' with your actual model name
         $model->title = $validatedData['title'];
         $model->description = $validatedData['description'];
+        $model->img_link = $validatedData['img_link'];
         $model->save();
 
         // You can return a response to your Vue.js frontend
