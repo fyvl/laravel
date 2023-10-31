@@ -50,13 +50,18 @@
 <template>
     <button @click="navigateToCreation" class="btn btn-primary mb-3">Добавить</button>
     <div class="row">
-        <div class="col-sm-6" v-for="item in news">
+        <div v-for="item in news">
             <div class="card mb-3" v-if="!item.deleted">
                 <div class="card-body">
-                    <h5 class="card-title">{{ item.title }}</h5>
-                    <p class="card-text">{{ item.description }}</p>
-                    <button @click="navigateToSpec(item.id)" class="btn btn-primary">Перейти</button>
-                    <button @click="deleteResource(item.id)" class="btn btn-danger m-1">Удалить</button>
+                    <div class="img-container">
+                        <img class="image" src="../assets/20231030-02.jpg">
+                    </div>
+                    <div class="container">
+                        <h5 class="card-title">{{ item.title }}</h5>
+                        <p class="card-text">{{ item.description }}</p>
+                        <button @click="navigateToSpec(item.id)" class="btn btn-primary">Перейти</button>
+                        <button @click="deleteResource(item.id)" class="btn btn-danger m-1">Удалить</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,4 +69,14 @@
 </template>
 
 <style scoped lang="less">
+    .img-container{
+        float: left;
+        margin-right: 10px;
+        padding: 10px;
+    }
+
+    .image {
+        width: 100px;
+        height: auto;
+    }
 </style>

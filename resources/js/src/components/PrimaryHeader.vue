@@ -5,7 +5,7 @@
             class="nav-link"
             to="/"
         >
-            <img src="@/logo.svg" alt="" class="logo">
+            <img src="../assets/logo.svg" alt="" class="logo">
         </router-link>
         <div class="links">
             <ul class="header__menu nav nav-pills">
@@ -43,6 +43,14 @@
                         class="nav-link"
                         to="/phone-dir"
                     >Телефоны
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link
+                        aria-current="page"
+                        class="nav-link"
+                        to="/tasks"
+                    >Задачи
                     </router-link>
                 </li>
             </ul>

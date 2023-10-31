@@ -5,6 +5,7 @@ import Resources from "@/pages/Resources.vue";
 import CreateNews from "@/pages/CreateNews.vue";
 import PhoneDir from "@/pages/PhoneDir.vue"
 import SpecificNews from "@/pages/SpecificNews.vue";
+import Tasks from "@/pages/Tasks.vue";
 
 const routes = [
 	{
@@ -34,6 +35,10 @@ const routes = [
     {
         path: '/news/:id',
         component: SpecificNews,
+    },
+    {
+        path: '/tasks',
+        component: Tasks,
     }
 ];
 

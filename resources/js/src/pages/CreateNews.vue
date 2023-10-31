@@ -7,7 +7,6 @@
         setup() {
             const title = ref('');
             const description = ref('');
-            const link = ref('');
 
             function formSubmit(e) {
                 e.preventDefault();
@@ -15,7 +14,6 @@
                 axios.post('/api/formSubmit', {
                     title: title.value,
                     description: description.value,
-                    link: link.value
                 })
 
                 this.$router.push('/news');
@@ -24,7 +22,6 @@
             return {
                 title,
                 description,
-                link,
                 formSubmit
             };
         },
@@ -39,11 +36,7 @@
         </div>
         <div class="form-group mb-3">
             <label class="m-1">Описание</label>
-            <input class="form-control" placeholder="Описание" v-model="description">
-        </div>
-        <div class="form-group mb-3">
-            <label class="m-1">Ссылка</label>
-            <input class="form-control" placeholder="Ссылка" v-model="link">
+            <textarea class="form-control" placeholder="Описание" v-model="description" rows="5"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Подтвердить</button>
     </form>

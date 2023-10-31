@@ -7,6 +7,8 @@
             const lastName = ref(null);
             const firstName = ref(null);
             const patronymic = ref(null);
+            const phone = ref(null);
+            const position = ref(null);
 
             const people = ref([]);
 
@@ -25,17 +27,31 @@
                     query['patronymic'] = patronymic.value;
                 }
 
-                axios.get('/api/live-search', { params: query })
-                    .then((res) => {
-                        people.value = res.data;
-                    })
-                    .catch((error) => {});
+                if (phone.value) {
+                    query['phone'] = phone.value;
+                }
+
+                if (position.value) {
+                    query['position'] = position.value;
+                }
+
+                if (Object.keys(query).length > 0) {
+                    axios.get('/api/live-search', { params: query })
+                        .then((res) => {
+                            people.value = res.data;
+                        })
+                        .catch((error) => {});
+                } else {
+                  people.value = [];
+                }
             }
 
             return {
                 lastName,
                 firstName,
                 patronymic,
+                phone,
+                position,
                 people,
                 getResults
             };
@@ -58,27 +74,41 @@
             <label class="m-1">Отчество</label>
             <input class="form-control" v-model="patronymic">
         </div>
+        <div class="form-group mb-3">
+            <label class="m-1">Телефон</label>
+            <input class="form-control" v-model="phone">
+        </div>
+        <div class="form-group mb-3">
+            <label class="m-1">Должность</label>
+            <input class="form-control" v-model="position">
+        </div>
         <button type="submit" class="btn btn-primary">Поиск</button>
     </form>
     <div v-if="people.length > 0">
-        <table class="table" v-for="person in people" :key="person.id">
-            <tr>
-                <th>Фамилия</th>
-                <th>Имя</th>
-                <th>Отчество</th>
-            </tr>
-            <tr>
-                <td>{{ person.last_name }}</td>
-                <td>{{ person.name }}</td>
-                <td>{{ person.patronymic }}</td>
-            </tr>
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Отчество</th>
+                    <th>Телефон</th>
+                    <th>Должность</th>
+                </tr>
+            </thead>
+            <tbody v-for="person in people" :key="person.id">
+                <tr>
+                    <td>{{ person.last_name }}</td>
+                    <td>{{ person.name }}</td>
+                    <td>{{ person.patronymic }}</td>
+                    <td>{{ person.phone }}</td>
+                    <td>{{ person.position }}</td>
+                </tr>
+            </tbody>
         </table>
     </div>
-<!--    <div class="mt-3" v-if="people.length > 0">-->
-<!--        <div v-for="person in people" :key="person.id">-->
-<!--            <h3>{{ person.last_name + ' ' + person.name + ' ' + person.patronymic }}</h3>-->
-<!--        </div>-->
-<!--    </div>-->
+    <div v-else class="mt-3">
+        <h3>Нет результатов, пожалуйста введите данные.</h3>
+    </div>
 </template>
 
 <style scoped lang="less">

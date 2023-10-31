@@ -20,6 +20,8 @@ class PersonController extends Controller
         $lastName = $request->input('lastName');
         $firstName = $request->input('firstName');
         $patronymic = $request->input('patronymic');
+        $phone = $request->input('phone');
+        $position = $request->input('position');
 
         $query = Person::query();
 
@@ -33,6 +35,14 @@ class PersonController extends Controller
 
         if ($patronymic) {
             $query->where('patronymic', 'LIKE', '%' . $patronymic . '%');
+        }
+
+        if ($phone) {
+            $query->where('phone', 'LIKE', '%' . $phone . '%');
+        }
+
+        if ($position) {
+            $query->where('position', 'LIKE', '%' . $position . '%');
         }
 
         $data = $query->get();
