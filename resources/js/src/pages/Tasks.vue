@@ -5,18 +5,13 @@
             setup() {
 
             },
-
     });
 </script>
 
 <template>
     <div class="container">
         <h5>Управление производством</h5>
-        <div>
-            <img src="../assets/1-1.png">
-            <img src="../assets/1-2.png">
-            <img src="../assets/1-3.png">
-        </div>
+        <hr>
         <div>
             <img src="../assets/2-1.png">
             <img src="../assets/2-2.png">
@@ -44,6 +39,7 @@
     </div>
     <div class="container">
         <h5>Справочные системы</h5>
+        <hr>
         <div>
             <img src="../assets/2-1-1.png">
             <img src="../assets/2-1-2.png">
@@ -58,6 +54,7 @@
     </div>
     <div class="container">
         <h5>Отчеты по задачам</h5>
+        <hr>
         <div>
             <img src="../assets/3-1-1.png">
             <img src="../assets/3-1-2.png">
@@ -88,6 +85,6 @@
     }
 
     .container {
-        justify-content: start;
+        margin: 10px;
     }
 </style>

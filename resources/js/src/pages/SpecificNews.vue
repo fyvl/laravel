@@ -26,7 +26,7 @@
 <template>
     <div class="card">
         <div class="card-body">
-            <div class="img-container">
+            <div class="img-container" v-if="news.img_link">
                 <img class="image" :src="'http://localhost:5173/resources/js/src/assets/' + news.img_link">
             </div>
             <div class="container">

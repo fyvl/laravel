@@ -1,12 +1,14 @@
 <template>
-	<h1>Главная</h1>
+	<h1 class="mb-3">Главная</h1>
+    <News></News>
 </template>
 
 <script lang="ts">
 	import { defineComponent } from 'vue';
+    import News from "@/pages/News.vue";
 
 	export default defineComponent({
-		components: {},
+		components: {News},
 		setup() {
 			return {};
 		},

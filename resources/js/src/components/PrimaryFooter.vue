@@ -21,13 +21,36 @@
 
 <template>
     <div id="footer">
-        <h1>{{ weather }}</h1>
+        <div class="info">
+            <img src="../assets/logo.svg" alt="" class="logo">
+            <p>© ОАО «КЗХ Бирюса», 2022</p>
+        </div>
+        <div class="weather">
+            <h1 class="text-white">{{ weather }}</h1>
+        </div>
     </div>
 </template>
 
 <style scoped lang="less">
     #footer {
         height: 300px;
-        background: grey;
+        background: rgba(17,29,52,255);
+        padding: 50px;
+    }
+
+    .info {
+        margin-left: 8%;
+    }
+
+    img {
+        padding: 5px;
+    }
+
+    p {
+        color: white;
+    }
+
+    .weather {
+        float: right;
     }
 </style>

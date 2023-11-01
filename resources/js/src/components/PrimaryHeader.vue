@@ -53,6 +53,14 @@
                     >Задачи
                     </router-link>
                 </li>
+                <li class="nav-item">
+                    <a
+                        aria-current="page"
+                        class="nav-link"
+                        href="http://jira.biryusa.corp:8080/servicedesk/customer/portal/6"
+                    >Заявки
+                    </a>
+                </li>
             </ul>
         </div>
 	</header>
@@ -71,7 +79,7 @@
 
 <style lang="less" scoped>
 	.header {
-        background: #a5c1e3;
+        background: rgba(162,179,212,255);
 		margin: 0 auto;
 		height: 100px;
 		display: flex;

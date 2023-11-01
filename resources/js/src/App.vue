@@ -24,7 +24,7 @@
 
 <style lang="less" scoped>
 	.main {
-        min-height: 1200px;
+        min-height: 750px;
 		width: 992px;
 		margin: 0 auto;
 		padding: 40px;

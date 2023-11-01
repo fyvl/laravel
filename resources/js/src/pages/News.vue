@@ -60,7 +60,7 @@
                         <h5 class="card-title">{{ item.title }}</h5>
                         <hr class="line">
                         <p class="card-text">{{ item.description }}</p>
-                        <button @click="navigateToSpec(item.id)" class="btn btn-primary">Перейти</button>
+                        <button @click="navigateToSpec(item.id)" class="btn btn-primary btn">Перейти</button>
                         <button @click="deleteResource(item.id)" class="btn btn-danger m-1">Удалить</button>
                     </div>
                 </div>

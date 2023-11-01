@@ -46,6 +46,15 @@
                 }
             }
 
+            function resetForm() {
+                lastName.value = '';
+                firstName.value = '';
+                patronymic.value = '';
+                phone.value = '';
+                position.value = '';
+                people.value = [];
+            }
+
             return {
                 lastName,
                 firstName,
@@ -53,7 +62,8 @@
                 phone,
                 position,
                 people,
-                getResults
+                getResults,
+                resetForm
             };
         },
     });
@@ -61,7 +71,7 @@
 
 <template>
     <h1>Поиск по базе</h1>
-    <form @submit.prevent="getResults">
+    <form @submit.prevent="getResults" @reset="resetForm">
         <div class="form-group mb-3">
             <label class="m-1">Фамилия</label>
             <input class="form-control" v-model="lastName">
@@ -82,7 +92,8 @@
             <label class="m-1">Должность</label>
             <input class="form-control" v-model="position">
         </div>
-        <button type="submit" class="btn btn-primary">Поиск</button>
+        <button type="submit" class="btn btn-primary m-1">Поиск</button>
+        <button type="reset" class="btn btn-primary m-1">Очистить</button>
     </form>
     <div v-if="people.length > 0">
         <table class="table mt-3">
