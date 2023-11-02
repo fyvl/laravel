@@ -45,7 +45,7 @@ class PersonController extends Controller
             $query->where('position', 'LIKE', '%' . $position . '%');
         }
 
-        $data = $query->get();
+        $data = $query->paginate(10);
 
         return response()->json($data);
     }

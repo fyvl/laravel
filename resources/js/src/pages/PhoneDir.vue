@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {defineComponent, ref} from 'vue';
+import {computed, defineComponent, ref} from 'vue';
     import axios from "axios";
 
     export default defineComponent({
@@ -11,6 +11,8 @@
             const position = ref(null);
 
             const people = ref([]);
+            const pageInfo = ref([]);
+            const currentPage = ref(1);
 
             function getResults() {
                 const query = {};
@@ -35,14 +37,36 @@
                     query['position'] = position.value;
                 }
 
-                if (Object.keys(query).length > 0) {
+                query['page'] = currentPage.value;
+
+                if (Object.keys(query).length == 2) {
                     axios.get('/api/live-search', { params: query })
                         .then((res) => {
-                            people.value = res.data;
+                            people.value = res.data.data;
+                            pageInfo.value = res.data;
+                            currentPage.value = res.data.current_page;
                         })
                         .catch((error) => {});
                 } else {
                   people.value = [];
+                }
+            }
+
+            const totalPages = computed(() => {
+                return pageInfo.value.last_page;
+            });
+
+            function prevPage() {
+                if (currentPage.value > 1) {
+                    currentPage.value--;
+                    getResults();
+                }
+            }
+
+            function nextPage() {
+                if (currentPage.value < totalPages.value) {
+                    currentPage.value++;
+                    getResults();
                 }
             }
 
@@ -53,6 +77,8 @@
                 phone.value = '';
                 position.value = '';
                 people.value = [];
+                pageInfo.value = [];
+                currentPage.value = 1;
             }
 
             return {
@@ -62,8 +88,13 @@
                 phone,
                 position,
                 people,
+                pageInfo,
                 getResults,
-                resetForm
+                resetForm,
+                currentPage,
+                totalPages,
+                nextPage,
+                prevPage,
             };
         },
     });
@@ -95,6 +126,21 @@
         <button type="submit" class="btn btn-primary m-1">Поиск</button>
         <button type="reset" class="btn btn-primary m-1">Очистить</button>
     </form>
+    <div v-if="Object.keys(pageInfo).length > 0 && people.length > 0" class="d-flex justify-content-center mt-3">
+        <button @click="prevPage" :disabled="pageInfo.current_page === 1" class="btn btn-sm">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <span class="mx-3">
+        Страница {{ pageInfo.current_page }} из {{ pageInfo.last_page }}
+      </span>
+        <button
+            @click="nextPage"
+            :disabled="pageInfo.current_page === pageInfo.last_page"
+            class="btn btn-sm"
+        >
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
     <div v-if="people.length > 0">
         <table class="table mt-3">
             <thead>
@@ -106,8 +152,8 @@
                     <th>Должность</th>
                 </tr>
             </thead>
-            <tbody v-for="person in people" :key="person.id">
-                <tr>
+            <tbody>
+                <tr v-for="person in people" :key="person.id">
                     <td>{{ person.last_name }}</td>
                     <td>{{ person.name }}</td>
                     <td>{{ person.patronymic }}</td>
