@@ -27,20 +27,6 @@
                 <li class="nav-item">
                     <router-link
                         class="nav-link"
-                        to="/departments"
-                    >Отделы
-                    </router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link
-                        class="nav-link"
-                        to="/resources"
-                    >Ресурсы
-                    </router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link
-                        class="nav-link"
                         to="/phone-dir"
                     >Телефоны
                     </router-link>
@@ -60,6 +46,21 @@
                         href="http://jira.biryusa.corp:8080/servicedesk/customer/portal/6"
                     >Заявки
                     </a>
+                </li>
+                <li class="dropdown">
+                    <button class="nav-link">Информация</button>
+                    <div class="dropdown-content">
+                        <router-link
+                            class="nav-link"
+                            to="/departments"
+                        >Отделы
+                        </router-link>
+                        <router-link
+                            class="nav-link"
+                            to="/resources"
+                        >Ресурсы
+                        </router-link>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -90,5 +91,24 @@
     }
     .logo {
         padding: 100px;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 5px;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
     }
 </style>

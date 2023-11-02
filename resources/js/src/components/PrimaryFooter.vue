@@ -33,7 +33,7 @@
 
 <style scoped lang="less">
     #footer {
-        height: 300px;
+        height: 250px;
         background: rgba(17,29,52,255);
         padding: 50px;
     }

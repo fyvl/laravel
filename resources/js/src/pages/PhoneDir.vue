@@ -169,4 +169,7 @@ import {computed, defineComponent, ref} from 'vue';
 </template>
 
 <style scoped lang="less">
+    table {
+        border: 1px solid #ccc
+    }
 </style>
