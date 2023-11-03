@@ -1,24 +1,28 @@
 <script>
-    import {defineComponent, ref} from "vue";
+    import {defineComponent, onMounted, ref} from "vue";
     import axios from "axios";
+    import {useRoute} from "vue-router";
 
     export default defineComponent({
-        components: {},
         setup() {
             const news = ref([]);
+            const route = useRoute();
+
+            onMounted(() => {
+                const newsId = route.params.id;
+
+                axios.get(`/api/news/${newsId}`)
+                    .then((res) => {
+                        news.value = res.data;
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching weather data:", error);
+                    });
+            });
 
             return {
                 news
             };
-        },
-        created() {
-            const newsId = this.$route.params.id;
-
-            axios.get(`/api/news/${newsId}`)
-                .then(response => {
-                    this.news = response.data;
-                    console.log(response.data)
-                });
         },
     })
 </script>

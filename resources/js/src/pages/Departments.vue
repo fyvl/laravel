@@ -1,23 +1,24 @@
 <script lang="ts">
-    import { defineComponent } from 'vue';
+    import { defineComponent, ref, onMounted } from 'vue';
     import axios from "axios";
 
     export default defineComponent({
-        components: {},
         setup() {
-            return {};
-        },
-        data() {
+            const departments = ref([])
+
+            onMounted(() => {
+                axios.get('/api/departments')
+                    .then((res) => {
+                        departments.value = res.data;
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching weather data:", error);
+                    });
+            });
+
             return {
-                departments: []
+                departments
             };
-        },
-        created() {
-            axios.get('/api/departments')
-                .then(response => {
-                    this.departments = response.data;
-                    console.log(response.data)
-                });
         },
     });
 </script>

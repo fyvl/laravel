@@ -39,7 +39,7 @@ import {computed, defineComponent, ref} from 'vue';
 
                 query['page'] = currentPage.value;
 
-                if (Object.keys(query).length == 2) {
+                if (Object.keys(query).length > 1) {
                     axios.get('/api/live-search', { params: query })
                         .then((res) => {
                             people.value = res.data.data;

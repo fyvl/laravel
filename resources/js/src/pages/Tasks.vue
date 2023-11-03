@@ -45,7 +45,7 @@
             <img src="../assets/2-1-2.png">
             <img src="../assets/2-1-3.png">
             <img src="../assets/2-1-4.png">
-            <img src="../assets/2-1-5.png">
+            <a href="https://2gis.ru/krasnoyarsk"><img src="../assets/2-1-5.png"></a>
         </div>
         <div>
             <img src="../assets/2-2-1.png">

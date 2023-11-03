@@ -11,14 +11,6 @@
             <ul class="header__menu nav nav-pills">
                 <li class="nav-item">
                     <router-link
-                        aria-current="page"
-                        class="nav-link"
-                        to="/"
-                    >Главная
-                    </router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link
                         class="nav-link"
                         to="/news"
                     >Новости
@@ -80,17 +72,26 @@
 
 <style lang="less" scoped>
 	.header {
-        background: rgba(162,179,212,255);
-		margin: 0 auto;
-		height: 100px;
+        background: rgb(255, 255, 255);
+		height: 75px;
 		display: flex;
 		align-items: center;
+        padding: 30px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	}
-    .links {
-        padding: 5px;
+
+    .nav-item {
+        margin-right: 20px;
     }
+
+    .nav-link {
+        font-weight: bold;
+    }
+
     .logo {
-        padding: 100px;
+        width: 150px;
+        height: auto;
+        margin: 50px;
     }
 
     .dropdown {

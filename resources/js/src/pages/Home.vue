@@ -1,5 +1,5 @@
 <template>
-	<h1 class="mb-3">Главная</h1>
+	<h3 class="mb-3">Коротко о событиях</h3>
     <News></News>
 </template>
 

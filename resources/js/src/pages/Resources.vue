@@ -2,7 +2,6 @@
     import {defineComponent, ref} from 'vue';
 
         export default defineComponent({
-            components: {},
             setup() {
                 const name = ref(['Apples','Pizza','Rice','Fish','Cake']);
 

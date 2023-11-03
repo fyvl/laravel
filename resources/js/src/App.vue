@@ -13,8 +13,8 @@
 
 	export default defineComponent({
 		components: {
-            PrimaryFooter,
 			PrimaryHeader,
+            PrimaryFooter,
 		},
 		setup() {
 			return {};

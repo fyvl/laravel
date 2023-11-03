@@ -3,7 +3,6 @@
     import axios from "axios";
 
     export default defineComponent({
-        components: {},
         setup() {
             const title = ref('');
             const description = ref('');
