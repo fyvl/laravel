@@ -13,7 +13,8 @@ class Person extends Model
         'last_name',
         'name',
         'patronymic',
+        'position',
         'phone',
-        'position'
+        'email'
     ];
 }

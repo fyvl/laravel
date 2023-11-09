@@ -12,7 +12,7 @@
                         departments.value = res.data;
                     })
                     .catch((error) => {
-                        console.error("Error fetching weather data:", error);
+                        console.error("Error fetching departments data:", error);
                     });
             });
 

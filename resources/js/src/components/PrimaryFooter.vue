@@ -47,42 +47,39 @@
         justify-content: space-between;
         align-items: center;
         color: white;
-    }
 
-    .info {
-        text-align: center;
-    }
+        .info {
+            text-align: center;
+            .logo {
+                width: 150px;
+                height: auto;
+                margin-bottom: 5px;
+            }
+        }
 
-    .logo {
-        width: 150px;
-        height: auto;
-        margin-bottom: 5px;
-    }
+        .weather {
+            display: flex;
+            align-items: center;
 
-    .weather {
-        display: flex;
-        align-items: center;
-    }
+            img {
+                width: 75px;
+                height: 75px;
+                margin-right: 10px;
+            }
 
-    .weather img {
-        width: 75px;
-        height: 75px;
-        margin-right: 10px;
-    }
-
-    .weather-info {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-
-    .city {
-        font-size: 1.2rem;
-        margin-bottom: 5px;
-    }
-
-    .temperature-value {
-        font-size: 2rem;
-        font-weight: bold;
+            &-info {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                .city {
+                    font-size: 1.2rem;
+                    margin-bottom: 5px;
+                }
+                .temperature-value {
+                    font-size: 2rem;
+                    font-weight: bold;
+                }
+            }
+        }
     }
 </style>

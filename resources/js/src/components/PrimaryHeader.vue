@@ -56,6 +56,14 @@
                 </li>
             </ul>
         </div>
+        <div class="login nav-item">
+            <router-link
+                class="nav-link"
+                to="/login"
+            >
+                <i class="fa-solid fa-user"></i>
+            </router-link>
+        </div>
 	</header>
 </template>
 
@@ -78,6 +86,20 @@
 		align-items: center;
         padding: 30px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+        .logo {
+            width: 150px;
+            height: auto;
+            margin: 50px;
+        }
+
+        .links {
+            margin-left: 5%;
+        }
+
+        .login {
+            margin-left: 45%;
+        }
 	}
 
     .nav-item {
@@ -88,28 +110,23 @@
         font-weight: bold;
     }
 
-    .logo {
-        width: 150px;
-        height: auto;
-        margin: 50px;
-    }
-
     .dropdown {
         position: relative;
         display: inline-block;
-    }
 
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-        border-radius: 5px;
-    }
+        &-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border: 1px solid rgba(0,0,0,.15);
+            border-radius: 5px;
+        }
 
-    .dropdown:hover .dropdown-content {
-        display: block;
+        &:hover &-content {
+            display: block;
+        }
     }
 </style>

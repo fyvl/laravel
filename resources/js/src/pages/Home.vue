@@ -5,7 +5,7 @@
 
 <script lang="ts">
 	import { defineComponent } from 'vue';
-    import News from "@/pages/News.vue";
+    import News from "@/components/News/News.vue";
 
 	export default defineComponent({
 		components: {News},

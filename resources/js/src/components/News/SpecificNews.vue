@@ -46,11 +46,12 @@
         float: left;
         margin-right: 10px;
         padding: 10px;
+        .image {
+            max-width: 100%;
+        }
     }
 
-    .image {
-        width: auto;
-        max-width: 125px;
-        height: auto;
+    .card-text {
+        white-space: pre-wrap;
     }
 </style>

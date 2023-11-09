@@ -1,11 +1,13 @@
 import Home from '@/pages/Home.vue';
-import News from "@/pages/News.vue";
+import News from "@/components/News/News.vue";
 import Departments from "@/pages/Departments.vue";
 import Resources from "@/pages/Resources.vue";
-import CreateNews from "@/pages/CreateNews.vue";
+import CreateNews from "@/components/News/CreateNews.vue";
 import PhoneDir from "@/pages/PhoneDir.vue"
-import SpecificNews from "@/pages/SpecificNews.vue";
+import SpecificNews from "@/components/News/SpecificNews.vue"
 import Tasks from "@/pages/Tasks.vue";
+import Login from "@/components/Auth/Login.vue";
+
 
 const routes = [
 	{
@@ -39,6 +41,10 @@ const routes = [
     {
         path: '/tasks',
         component: Tasks,
+    },
+    {
+        path: '/login',
+        component: Login,
     }
 ];
 

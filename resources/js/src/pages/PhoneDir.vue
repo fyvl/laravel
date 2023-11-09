@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import {computed, defineComponent, ref} from 'vue';
     import axios from "axios";
 
@@ -7,8 +7,9 @@ import {computed, defineComponent, ref} from 'vue';
             const lastName = ref(null);
             const firstName = ref(null);
             const patronymic = ref(null);
-            const phone = ref(null);
             const position = ref(null);
+            const phone = ref(null);
+            const email = ref(null);
 
             const people = ref([]);
             const pageInfo = ref([]);
@@ -27,6 +28,10 @@ import {computed, defineComponent, ref} from 'vue';
 
                 if (patronymic.value) {
                     query['patronymic'] = patronymic.value;
+                }
+
+                if (email.value) {
+                    query['email'] = email.value;
                 }
 
                 if (phone.value) {
@@ -74,8 +79,9 @@ import {computed, defineComponent, ref} from 'vue';
                 lastName.value = '';
                 firstName.value = '';
                 patronymic.value = '';
-                phone.value = '';
                 position.value = '';
+                phone.value = '';
+                email.value = '';
                 people.value = [];
                 pageInfo.value = [];
                 currentPage.value = 1;
@@ -85,8 +91,9 @@ import {computed, defineComponent, ref} from 'vue';
                 lastName,
                 firstName,
                 patronymic,
-                phone,
                 position,
+                phone,
+                email,
                 people,
                 pageInfo,
                 getResults,
@@ -116,12 +123,16 @@ import {computed, defineComponent, ref} from 'vue';
             <input class="form-control" v-model="patronymic">
         </div>
         <div class="form-group mb-3">
+            <label class="m-1">Должность</label>
+            <input class="form-control" v-model="position">
+        </div>
+        <div class="form-group mb-3">
             <label class="m-1">Телефон</label>
             <input class="form-control" v-model="phone">
         </div>
         <div class="form-group mb-3">
-            <label class="m-1">Должность</label>
-            <input class="form-control" v-model="position">
+            <label class="m-1">Email</label>
+            <input class="form-control" v-model="email">
         </div>
         <button type="submit" class="btn btn-primary m-1">Поиск</button>
         <button type="reset" class="btn btn-primary m-1">Очистить</button>
@@ -148,8 +159,9 @@ import {computed, defineComponent, ref} from 'vue';
                     <th>Фамилия</th>
                     <th>Имя</th>
                     <th>Отчество</th>
-                    <th>Телефон</th>
                     <th>Должность</th>
+                    <th>Телефон</th>
+                    <th>Email</th>
                 </tr>
             </thead>
             <tbody>
@@ -157,8 +169,9 @@ import {computed, defineComponent, ref} from 'vue';
                     <td>{{ person.last_name }}</td>
                     <td>{{ person.name }}</td>
                     <td>{{ person.patronymic }}</td>
-                    <td>{{ person.phone }}</td>
                     <td>{{ person.position }}</td>
+                    <td>{{ person.phone }}</td>
+                    <td>{{ person.email }}</td>
                 </tr>
             </tbody>
         </table>

@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('name');
             $table->string('patronymic');
-            $table->string('phone');
             $table->string('position');
+            $table->string('phone');
+            $table->string('email');
             $table->timestamps();
         });
     }

@@ -71,20 +71,21 @@
 </template>
 
 <style scoped lang="less">
-    img {
-        width: 15%;
-        margin: 3px;
-        border: 1px solid black;
-        transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    img:hover {
-        transform: scale(1.05);
-        box-shadow: 0 5px 10px;
-        cursor: pointer;
-    }
-
     .container {
         margin: 10px;
+
+        img {
+            width: 15%;
+            margin: 3px;
+            border: 1px solid black;
+            border-radius: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+
+            &:hover {
+                transform: scale(1.05);
+                box-shadow: 0 5px 10px;
+                cursor: pointer;
+            }
+        }
     }
 </style>
