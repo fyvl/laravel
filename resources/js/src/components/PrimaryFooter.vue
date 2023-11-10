@@ -32,7 +32,7 @@
         <div v-if="weather" class="weather">
             <img :src="weather.current.condition.icon" alt="Weather Icon">
             <div class="weather-info">
-                <p class="city">{{ weather.location.name }}</p>
+                <p class="city">Красноярск</p>
                 <h1 class="temperature-value">{{ weather.current.temp_c }}&deg;C</h1>
             </div>
         </div>
@@ -53,7 +53,7 @@
             .logo {
                 width: 150px;
                 height: auto;
-                margin-bottom: 5px;
+                margin-bottom: 15px;
             }
         }
 
@@ -73,6 +73,7 @@
                 align-items: flex-end;
                 .city {
                     font-size: 1.2rem;
+                    font-weight: 500;
                     margin-bottom: 5px;
                 }
                 .temperature-value {

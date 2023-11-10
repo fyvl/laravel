@@ -1,8 +1,9 @@
-<script lang="ts">
+<script>
     import { defineComponent, ref, onMounted } from 'vue';
     import axios from "axios";
 
     export default defineComponent({
+        props: ['reduced'],
         setup() {
             const news = ref([]);
 
@@ -31,6 +32,10 @@
                     });
             }
 
+            function navigateToSelf() {
+                this.$router.push('/news');
+            }
+
             function navigateToSpec(id) {
                 this.$router.push(`/news/${id}`);
             }
@@ -42,6 +47,7 @@
             return {
                 news,
                 deleteResource,
+                navigateToSelf,
                 navigateToSpec,
                 navigateToCreation
             };
@@ -50,7 +56,7 @@
 </script>
 
 <template>
-    <i @click="navigateToCreation" class="fa-solid fa-plus btn btn-primary mb-3"></i>
+    <i v-if="!reduced" @click="navigateToCreation" class="fa-solid fa-plus btn btn-primary mb-3"></i>
     <div v-for="item in news">
         <div class="card mb-3" v-if="!item.deleted">
             <div class="card-body">
@@ -60,7 +66,12 @@
                 <div class="container">
                     <h5 class="card-title">{{ item.title }}</h5>
                     <hr class="line">
-                    <div class="card-text">{{ item.description }}</div>
+                    <div v-if="reduced" class="card-text">
+                        {{ item.description.slice(0, 350) }} . . .
+                        <br>
+                        <i @click="navigateToSelf" class="arrow-icon fa-solid fa-arrow-right-long fa-2xl"></i>
+                    </div>
+                    <div v-else class="card-text">{{ item.description }}</div>
                 </div>
                 <i @click="deleteResource(item.id)" class="del btn btn-lg fa-solid fa-circle-xmark"></i>
             </div>
@@ -72,6 +83,7 @@
     .card-body {
         display: flex;
         min-height: 150px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 
         .img-container {
             margin-right: 10px;
@@ -87,6 +99,11 @@
         .container {
             .card-text {
                 white-space: pre-wrap;
+                .arrow-icon {
+                    float: right;
+                    margin: 25px;
+                    cursor: pointer;
+                }
             }
             .line {
                 margin: 5px;

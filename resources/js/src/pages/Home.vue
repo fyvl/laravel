@@ -1,6 +1,6 @@
 <template>
 	<h3 class="mb-3">Коротко о событиях</h3>
-    <News></News>
+    <News :reduced="true"></News>
 </template>
 
 <script lang="ts">
