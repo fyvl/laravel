@@ -3,14 +3,20 @@ import { createStore } from 'vuex';
 const store = createStore({
 	state() {
 		return {
-			count: 0,
+            authenticated: false
 		};
 	},
 	mutations: {
-		increment(state) {
-			state.count++;
-		},
+        SET_AUTH(state, auth) {
+            state.authenticated = auth;
+        }
 	},
+    actions: {
+        setAuth({ commit }, auth) {
+            commit('SET_AUTH', auth);
+        }
+    },
+    modules: {}
 });
 
 export default store;

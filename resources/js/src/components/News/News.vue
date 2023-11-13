@@ -1,11 +1,16 @@
 <script>
-    import { defineComponent, ref, onMounted } from 'vue';
+import {defineComponent, ref, onMounted, computed} from 'vue';
     import axios from "axios";
+    import {useStore} from "vuex";
 
     export default defineComponent({
         props: ['reduced'],
         setup() {
             const news = ref([]);
+
+            const store = useStore();
+
+            const auth = computed(() => store.state.authenticated)
 
             onMounted(() => {
                 axios.get('/api/news')
@@ -46,6 +51,7 @@
 
             return {
                 news,
+                auth,
                 deleteResource,
                 navigateToSelf,
                 navigateToSpec,
@@ -56,7 +62,7 @@
 </script>
 
 <template>
-    <i v-if="!reduced" @click="navigateToCreation" class="fa-solid fa-plus btn btn-primary mb-3"></i>
+    <i v-if="!reduced && auth"  @click="navigateToCreation" class="fa-solid fa-plus btn btn-primary mb-3"></i>
     <div v-for="item in news">
         <div class="card mb-3" v-if="!item.deleted">
             <div class="card-body">
@@ -73,7 +79,7 @@
                     </div>
                     <div v-else class="card-text">{{ item.description }}</div>
                 </div>
-                <i @click="deleteResource(item.id)" class="del btn btn-lg fa-solid fa-circle-xmark"></i>
+                <i v-if="!reduced && auth" @click="deleteResource(item.id)" class="del btn btn-lg fa-solid fa-circle-xmark"></i>
             </div>
         </div>
     </div>
