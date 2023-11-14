@@ -1,5 +1,5 @@
 <script>
-import {defineComponent, ref, onMounted, computed} from 'vue';
+    import {defineComponent, ref, onMounted, computed} from 'vue';
     import axios from "axios";
     import {useStore} from "vuex";
 

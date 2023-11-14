@@ -1,5 +1,5 @@
 <script>
-import {computed, defineComponent, ref} from 'vue';
+    import {computed, defineComponent, ref} from 'vue';
     import axios from "axios";
 
     export default defineComponent({

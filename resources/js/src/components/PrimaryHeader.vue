@@ -1,3 +1,28 @@
+<script>
+    import {computed, defineComponent} from 'vue';
+    import {useStore} from "vuex";
+    import axios from "axios";
+
+	export default defineComponent({
+		components: {},
+		setup() {
+            const store = useStore();
+            const auth = computed(() => store.state.authenticated)
+
+            async function logout () {
+                await axios.post('/api/logout')
+
+                await store.dispatch('setAuth', false);
+            }
+
+            return {
+                auth,
+                logout
+            }
+		},
+	});
+</script>
+
 <template>
 	<header class="header">
         <router-link
@@ -71,31 +96,6 @@
         </div>
 	</header>
 </template>
-
-<script>
-    import {computed, defineComponent} from 'vue';
-    import {useStore} from "vuex";
-    import axios from "axios";
-
-	export default defineComponent({
-		components: {},
-		setup() {
-            const store = useStore();
-            const auth = computed(() => store.state.authenticated)
-
-            async function logout () {
-                await axios.post('/api/logout')
-
-                await store.dispatch('setAuth', false);
-            }
-
-            return {
-                auth,
-                logout
-            }
-		},
-	});
-</script>
 
 <style lang="less" scoped>
 	.header {
