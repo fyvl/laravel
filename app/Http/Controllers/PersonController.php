@@ -17,37 +17,23 @@ class PersonController extends Controller
 
     public function getPeople(Request $request)
     {
-        $lastName = $request->input('lastName');
-        $firstName = $request->input('firstName');
-        $patronymic = $request->input('patronymic');
-        $position = $request->input('position');
-        $phone = $request->input('phone');
-        $email = $request->input('email');
+        $searchFields = [
+            'last_name',
+            'name',
+            'patronymic',
+            'position',
+            'phone',
+            'email'
+        ];
 
         $query = Person::query();
 
-        if ($lastName) {
-            $query->where('last_name', 'LIKE', '%' . $lastName . '%');
-        }
+        foreach ($searchFields as $field) {
+            $input = $request->input($field);
 
-        if ($firstName) {
-            $query->where('name', 'LIKE', '%' . $firstName . '%');
-        }
-
-        if ($patronymic) {
-            $query->where('patronymic', 'LIKE', '%' . $patronymic . '%');
-        }
-
-        if ($position) {
-            $query->where('position', 'LIKE', '%' . $position . '%');
-        }
-
-        if ($phone) {
-            $query->where('phone', 'LIKE', '%' . $phone . '%');
-        }
-
-        if ($email) {
-            $query->where('email', 'LIKE', '%' . $email . '%');
+            if ($input) {
+                $query->where($field, 'LIKE', '%' . $input . '%');
+            }
         }
 
         $data = $query->paginate(10);
