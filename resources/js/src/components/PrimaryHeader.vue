@@ -1,3 +1,28 @@
+<script>
+    import {computed, defineComponent} from 'vue';
+    import {useStore} from "vuex";
+    import axios from "axios";
+
+	export default defineComponent({
+		components: {},
+		setup() {
+            const store = useStore();
+            const auth = computed(() => store.state.authenticated)
+
+            async function logout () {
+                await axios.post('/api/logout')
+
+                await store.dispatch('setAuth', false);
+            }
+
+            return {
+                auth,
+                logout
+            }
+		},
+	});
+</script>
+
 <template>
 	<header class="header">
         <router-link
@@ -56,7 +81,7 @@
                 </li>
             </ul>
         </div>
-        <div class="login nav-item">
+        <div v-if="!auth" class="login nav-item">
             <router-link
                 class="nav-link"
                 to="/login"
@@ -64,19 +89,13 @@
                 <i class="fa-solid fa-user"></i>
             </router-link>
         </div>
+        <div v-else class="login nav-item">
+            <a @click="logout" href="#" class="nav-link">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
+        </div>
 	</header>
 </template>
-
-<script lang="ts">
-	import { defineComponent } from 'vue';
-
-	export default defineComponent({
-		components: {},
-		setup() {
-			return {};
-		},
-	});
-</script>
 
 <style lang="less" scoped>
 	.header {

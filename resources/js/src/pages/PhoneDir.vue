@@ -1,50 +1,30 @@
 <script>
-import {computed, defineComponent, ref} from 'vue';
+    import {computed, defineComponent, reactive, ref} from 'vue';
     import axios from "axios";
 
     export default defineComponent({
         setup() {
-            const lastName = ref(null);
-            const firstName = ref(null);
-            const patronymic = ref(null);
-            const position = ref(null);
-            const phone = ref(null);
-            const email = ref(null);
+            const searchForm = reactive({
+                last_name: null,
+                name: null,
+                patronymic: null,
+                position: null,
+                phone: null,
+                email: null,
+            });
 
             const people = ref([]);
             const pageInfo = ref([]);
             const currentPage = ref(1);
 
             function getResults() {
-                const query = {};
+                const query = { ...searchForm, page: currentPage.value };
 
-                if (lastName.value) {
-                    query['lastName'] = lastName.value;
-                }
+                const hasSearchParameters = Object.keys(query)
+                    .filter(key => key !== "page")
+                    .some(key => query[key]);
 
-                if (firstName.value) {
-                    query['firstName'] = firstName.value;
-                }
-
-                if (patronymic.value) {
-                    query['patronymic'] = patronymic.value;
-                }
-
-                if (email.value) {
-                    query['email'] = email.value;
-                }
-
-                if (phone.value) {
-                    query['phone'] = phone.value;
-                }
-
-                if (position.value) {
-                    query['position'] = position.value;
-                }
-
-                query['page'] = currentPage.value;
-
-                if (Object.keys(query).length > 1) {
+                if (hasSearchParameters) {
                     axios.get('/api/live-search', { params: query })
                         .then((res) => {
                             people.value = res.data.data;
@@ -57,9 +37,7 @@ import {computed, defineComponent, ref} from 'vue';
                 }
             }
 
-            const totalPages = computed(() => {
-                return pageInfo.value.last_page;
-            });
+            const totalPages = computed(() => pageInfo.value.last_page);
 
             function prevPage() {
                 if (currentPage.value > 1) {
@@ -76,32 +54,24 @@ import {computed, defineComponent, ref} from 'vue';
             }
 
             function resetForm() {
-                lastName.value = '';
-                firstName.value = '';
-                patronymic.value = '';
-                position.value = '';
-                phone.value = '';
-                email.value = '';
+                Object.keys(searchForm).forEach(key => {
+                    searchForm[key] = null;
+                });
                 people.value = [];
                 pageInfo.value = [];
                 currentPage.value = 1;
             }
 
             return {
-                lastName,
-                firstName,
-                patronymic,
-                position,
-                phone,
-                email,
+                searchForm,
                 people,
                 pageInfo,
-                getResults,
-                resetForm,
                 currentPage,
                 totalPages,
+                getResults,
                 nextPage,
                 prevPage,
+                resetForm,
             };
         },
     });
@@ -112,27 +82,27 @@ import {computed, defineComponent, ref} from 'vue';
     <form @submit.prevent="getResults" @reset="resetForm">
         <div class="form-group mb-3">
             <label class="m-1">Фамилия</label>
-            <input class="form-control" v-model="lastName">
+            <input class="form-control" v-model="searchForm.last_name">
         </div>
         <div class="form-group mb-3">
             <label class="m-1">Имя</label>
-            <input class="form-control" v-model="firstName">
+            <input class="form-control" v-model="searchForm.name">
         </div>
         <div class="form-group mb-3">
             <label class="m-1">Отчество</label>
-            <input class="form-control" v-model="patronymic">
+            <input class="form-control" v-model="searchForm.patronymic">
         </div>
         <div class="form-group mb-3">
             <label class="m-1">Должность</label>
-            <input class="form-control" v-model="position">
+            <input class="form-control" v-model="searchForm.position">
         </div>
         <div class="form-group mb-3">
             <label class="m-1">Телефон</label>
-            <input class="form-control" v-model="phone">
+            <input class="form-control" v-model="searchForm.phone">
         </div>
         <div class="form-group mb-3">
             <label class="m-1">Email</label>
-            <input class="form-control" v-model="email">
+            <input class="form-control" v-model="searchForm.email">
         </div>
         <button type="submit" class="btn btn-primary m-1">Поиск</button>
         <button type="reset" class="btn btn-primary m-1">Очистить</button>
